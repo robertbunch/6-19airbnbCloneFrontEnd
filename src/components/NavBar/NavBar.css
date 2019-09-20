@@ -11,9 +11,58 @@
 
 .nav ul li{
     color: white;
+    cursor: pointer;
+}
+
+
+.nav .nav-non-link{
+    padding: 0 15px;
+}
+
+.nav-non-link:hover{
+    border-bottom: 2px solid white;
+    background-color: initial;
 }
 
 .nav ul li:hover{
     border-bottom: 2px solid white;
     background-color: initial;    
 }
+
+.login-modal{
+    background-color: white;
+    width: 40%;
+    max-width: 441px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30vh;
+    display: none;
+    z-index: 100;
+}
+
+#close-modal{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.body-modal-show{
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    overflow: hidden;
+    z-index: 1;
+
+    background-color: #484848;
+
+}
+

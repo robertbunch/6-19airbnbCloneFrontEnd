@@ -3,6 +3,24 @@ import './NavBar.css';
 import { Link } from 'react-router-dom';
 
 class NavBar extends Component{
+
+    state = {
+        showModal: false
+    }
+
+    signup = (e)=>{
+        document.querySelector('body').className = 'body-modal-show';
+        this.setState({
+            showModal: true
+        })
+    }
+    closeModal = (e)=>{
+        document.querySelector('body').className = '';
+        this.setState({
+            showModal: false
+        })
+    }
+
     render(){
         return(
             <div className="container-fluid nav">
@@ -14,12 +32,23 @@ class NavBar extends Component{
                                 <li><Link to="/host/homes">Host a Home</Link></li>
                                 <li><Link to="/host/experience">Host an experience</Link></li>
                                 <li><Link to="/help">Help</Link></li>
-                                <li><Link to="/sign-up">Sign up</Link></li>
-                                <li><Link to="/log-in">Log in</Link></li>
+                                <li className="nav-non-link" onClick={this.signup}>
+                                    Sign up
+                                </li>
+                                <li className="nav-non-link" onClick={this.signup}>
+                                    Log in
+                                </li>
                             </ul>
                         </div>
                     </nav>
                 </div>
+
+                <div className="login-modal" style={this.state.showModal ? {"display": "block"} : {}} >
+                    <button id="close-modal" onClick={this.closeModal}>x</button>
+                    <h1>Modal!</h1>
+                </div>
+
+
             </div>
 
         )
