@@ -23,6 +23,7 @@ class SignUp extends React.Component{
     }
 
     render(){
+        console.log(this.props.auth);
         return(
             <div className="register-form">
                 <form onSubmit={this.submitSignUp}>
@@ -39,6 +40,12 @@ class SignUp extends React.Component{
     }
 }
 
+function mapStateToProps(state){
+    return{
+        auth: state.auth
+    }
+}
+
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         signUpAction
@@ -46,4 +53,4 @@ function mapDispatchToProps(dispatch){
 }
 
 // export default SignUp;
-export default connect(null,mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps,mapDispatchToProps)(SignUp);
