@@ -9,7 +9,7 @@ class NavBar extends Component{
 
     state = {
         showModal: false,
-        modalContent: <ModalSplash />
+        modalContent: ""
     }
 
     componentDidMount(){
@@ -33,7 +33,7 @@ class NavBar extends Component{
     signup = (e)=>{
         document.querySelector('body').className = 'body-modal-show';
         this.setState({
-            showModal: true
+            showModal: true,
         })
     }
     closeModal = (e)=>{

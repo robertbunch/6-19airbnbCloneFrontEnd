@@ -226,3 +226,10 @@
     background: rgb(255, 90, 95) !important;
     border-color: transparent !important;
 }
+
+.login-text span{
+    cursor: pointer;
+    color: blue;
+}
+
+
