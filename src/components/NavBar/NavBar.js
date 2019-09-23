@@ -2,11 +2,32 @@ import React, { Component } from 'react';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
 import ModalSplash from './ModalSplash';
+import Login from './Login';
+import Signup from './Signup';
 
 class NavBar extends Component{
 
     state = {
-        showModal: false
+        showModal: false,
+        modalContent: <ModalSplash />
+    }
+
+    componentDidMount(){
+        this.setState({
+            modalContent: <ModalSplash changeModalContent={this.changeModalContent}/>            
+        })
+    }
+
+    changeModalContent = (newContent)=>{
+        let modalContent = <ModalSplash changeModalContent={this.changeModalContent}/>
+        if(newContent === 'login'){
+            modalContent = <Login  changeModalContent={this.changeModalContent}/>
+        }else if(newContent === 'signup'){
+            modalContent = <Signup  changeModalContent={this.changeModalContent}/>
+        }
+        this.setState({
+            modalContent
+        })
     }
 
     signup = (e)=>{
@@ -47,7 +68,7 @@ class NavBar extends Component{
                 <div className="login-modal" style={this.state.showModal ? {"display": "block"} : {}} >
                     <button id="close-modal" onClick={this.closeModal}>&Chi;</button>
                     <div className="modal-content">
-                        <ModalSplash />
+                        {this.state.modalContent}
                     </div>
                 </div>
             </div>
