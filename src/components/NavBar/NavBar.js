@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
+import ModalSplash from './ModalSplash';
 
 class NavBar extends Component{
 
@@ -44,11 +45,11 @@ class NavBar extends Component{
                 </div>
 
                 <div className="login-modal" style={this.state.showModal ? {"display": "block"} : {}} >
-                    <button id="close-modal" onClick={this.closeModal}>x</button>
-                    <h1>Modal!</h1>
+                    <button id="close-modal" onClick={this.closeModal}>&Chi;</button>
+                    <div className="modal-content">
+                        <ModalSplash />
+                    </div>
                 </div>
-
-
             </div>
 
         )
