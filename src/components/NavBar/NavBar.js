@@ -24,7 +24,7 @@ class NavBar extends Component{
     changeModalContent = (newContent)=>{
         let modalContent = <ModalSplash changeModalContent={this.changeModalContent}/>
         if(newContent === 'login'){
-            modalContent = <Login  changeModalContent={this.changeModalContent}/>
+            modalContent = <Login  changeModalContent={this.changeModalContent} closeModal={this.closeModal}/>
         }else if(newContent === 'signup'){
             modalContent = <Signup  changeModalContent={this.changeModalContent} closeModal={this.closeModal} />
         }

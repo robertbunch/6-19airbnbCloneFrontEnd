@@ -5,10 +5,24 @@ import { bindActionCreators } from 'redux';
 import loginAction from '../../actions/loginAction';
 
 class Login extends React.Component{
-    state = {email: "", password: ""}
+    state = {email: "", password: "", msg: ""}
 
     componentDidUpdate(prevProps,prevState){
-        console.log(this.props.auth);
+        if(this.props.auth.msg !== prevProps.auth.msg){
+            let msg = "";
+            if(this.props.auth.msg === "badPass"){
+                msg = "We do have a user with this password."
+            }else if(this.props.auth.msg === "loggedIn"){
+                this.props.closeModal();
+            }else if(this.props.auth.msg === "noEmail"){
+                msg = "This email is not registered. Please enter a different email or register."
+            }
+            this.setState({
+                msg
+            })
+        }else{
+            // Dont care
+        }
     }
 
     changeEmail = (e)=>{this.setState({email: e.target.value})}
@@ -24,6 +38,7 @@ class Login extends React.Component{
     render(){
         return(
             <div className="login-form">
+                <p className="red-text">{this.state.msg}</p>
                 <form onSubmit={this.submitLogin}>
                     <button className="facebook-login">Connect With Facebook</button>
                     <button className="google-login">Connect with Google</button>
