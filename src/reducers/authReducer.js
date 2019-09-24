@@ -5,6 +5,8 @@ export default (state = {},action)=>{
         return action.payload.data
     }else if(action.type === 'logout'){
         return {}
+    }else if(action.type === 'login'){
+        return action.payload.data
     }
     return state;
 }

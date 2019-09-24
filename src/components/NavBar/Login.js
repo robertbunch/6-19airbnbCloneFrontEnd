@@ -1,9 +1,15 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import loginAction from '../../actions/loginAction';
 
 class Login extends React.Component{
     state = {email: "", password: ""}
+
+    componentDidUpdate(prevProps,prevState){
+        console.log(this.props.auth);
+    }
 
     changeEmail = (e)=>{this.setState({email: e.target.value})}
     changePass = (e)=>{this.setState({password: e.target.value})}
@@ -11,6 +17,8 @@ class Login extends React.Component{
     submitLogin = (e)=>{
         e.preventDefault();
         // Validation for email and pass
+        const formData = {...this.state}
+        this.props.login(formData);
     }
     
     render(){
@@ -31,4 +39,21 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+function mapStateToProps(state){
+    return{
+        auth: state.auth
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    //bindActionCreators = make our otherwise 
+    // simple function an action creator!!!
+    return bindActionCreators({
+        login: loginAction
+    },dispatch);
+}
+
+// export default Login;
+export default connect(mapStateToProps,mapDispatchToProps)(Login);
+
+
