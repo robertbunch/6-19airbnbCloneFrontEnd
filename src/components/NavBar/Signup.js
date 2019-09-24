@@ -41,15 +41,16 @@ class SignUp extends React.Component{
                 break;
             }
         }
-        if(this.state.password.toLowerCase() === this.state.password){
-            // user doesnt have any uppercase characters
-            formValid = false;
-            msg = "Your password must contain at least 1 uppercase letter";
-        // check to see if there is a number in the password
-        }else if(!(/\d/.test(this.state.password))){
-            formValid = false;
-            msg = "Your password must contain at least 1 number."
-        }
+
+        // if(this.state.password.toLowerCase() === this.state.password){
+        //     // user doesnt have any uppercase characters
+        //     formValid = false;
+        //     msg = "Your password must contain at least 1 uppercase letter";
+        // // check to see if there is a number in the password
+        // }else if(!(/\d/.test(this.state.password))){
+        //     formValid = false;
+        //     msg = "Your password must contain at least 1 number."
+        // }
 
         if(formValid){
             const userData = {...this.state}
