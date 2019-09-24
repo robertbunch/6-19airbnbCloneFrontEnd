@@ -10,6 +10,19 @@ class SignUp extends React.Component{
         email: "", first: "", last: "", password: "", msg: ""
     }
 
+    //this lifecycle method runs ANYTIME props or state 
+    // changes for this component
+    componentDidUpdate(prevProps,prevState){
+        if((this.props.auth.msg === 'userExists') && (prevProps.auth.msg !== 'userExists')){
+            this.setState({
+                msg: "This user already exists. Please log in or create a new account."
+            })
+        }else if((this.props.auth.msg === 'userAdded') && (prevProps.auth.msg !== 'userAdded')){
+            // user was added. close the modal.
+            this.props.closeModal();
+        }
+    }
+
     changeEmail = (e)=>{this.setState({email: e.target.value})}
     changeFirst = (e)=>{this.setState({first: e.target.value})}
     changeLast = (e)=>{this.setState({last: e.target.value})}

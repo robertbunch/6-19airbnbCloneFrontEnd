@@ -23,7 +23,7 @@ class NavBar extends Component{
         if(newContent === 'login'){
             modalContent = <Login  changeModalContent={this.changeModalContent}/>
         }else if(newContent === 'signup'){
-            modalContent = <Signup  changeModalContent={this.changeModalContent}/>
+            modalContent = <Signup  changeModalContent={this.changeModalContent} closeModal={this.closeModal} />
         }
         this.setState({
             modalContent
