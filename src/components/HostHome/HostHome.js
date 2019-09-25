@@ -53,12 +53,23 @@ class HostHome extends Component{
     onSubmit = async (e) => {
         e.preventDefault();
         console.log(this.props.auth)
-        // this.props.hostHomeAction(this.state)
+
+        const file = document.getElementById('location-image').files[0];
+        const headerConfig = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+        const data = new FormData();
+        data.append('locationImage',file);
+        for(let key in this.state){
+            data.append(key,this.state[key])
+        }
         const submitHostUrl = `${window.apiHost}/host/homes`
-        let dataToSend = {...this.state}
-        dataToSend.token = this.props.auth.token;
-        const axiosResposne = await axios.post(submitHostUrl,dataToSend);
-        console.log(axiosResposne.data)
+        // let dataToSend = {...this.state}
+        data.append('token',this.props.auth.token);
+        const axiosResponse = await axios.post(submitHostUrl,data);
+        console.log(axiosResponse.data)
     }
     componentDidMount(){
         if (!this.props.auth.token) {
@@ -113,7 +124,7 @@ class HostHome extends Component{
               </div>
               <div className="row">
                     <div className="input-field col s6">                            
-                        <input onChange={this.changeImage} type="file" />Upload image
+                        <input id="location-image" onChange={this.changeImage} type="file" />Upload image
                     </div>
                     <div className="input-field col s6">
                         <input value={this.state.amenities} onChange={this.changeAmenities} id="amenities" type="text" className="validate" />
