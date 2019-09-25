@@ -6,6 +6,12 @@ import './HostHome.css';
 class HostHome extends Component{
 
     componentDidMount(){
+        if(!this.props.auth.token){
+            // if there is no token
+            localStorage.setItem('preLoginPage', '/host/homes')
+            this.props.history.push('/login');
+        }
+
         var elems = document.querySelectorAll('select');
         var instances = window.M.FormSelect.init(elems);
     }
@@ -68,4 +74,10 @@ class HostHome extends Component{
     }
 }
 
-export default connect()(HostHome);
+function mapStateToProps(state){
+    return{
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(HostHome);
