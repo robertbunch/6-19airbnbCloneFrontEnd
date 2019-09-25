@@ -79,11 +79,16 @@ class NavBar extends Component{
     }
 
     render(){
+        let navColor = "transparent";
+        if(this.props.location.pathname === '/host/homes'){
+            navColor = "black";
+        }
+        console.log(this.props);
         const navLinks = this.buildNavLinks();
         return(
             <div className="container-fluid nav">
                 <div className="row">
-                    <nav className="transparent">
+                    <nav className={navColor}>
                         <div className="nav-wrapper">
                             <Link to="/" className="left">airbnb</Link>
                             {navLinks}
