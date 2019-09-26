@@ -68,7 +68,7 @@ class HostHome extends Component{
         const submitHostUrl = `${window.apiHost}/host/homes`
         // let dataToSend = {...this.state}
         data.append('token',this.props.auth.token);
-        const axiosResponse = await axios.post(submitHostUrl,data);
+        const axiosResponse = await axios.post(submitHostUrl,data,headerConfig);
         console.log(axiosResponse.data)
     }
     componentDidMount(){
