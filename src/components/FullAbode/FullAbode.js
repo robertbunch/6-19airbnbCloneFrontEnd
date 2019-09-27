@@ -33,20 +33,20 @@ class FullAbode extends Component{
                     <img src={`${window.apiHost}${abode.imageUrl}`} />
                 </div>
                 <div className="col s6 offset-s2">
-                <div className="col s8">
-                    <div className="location">{abode.location}</div>
-                    <div className="title">{abode.title}</div>
-                    <div className="price-per-day">{abode.pricePerDay}</div>
-                    <div className="guests">{abode.guests}</div>
-                    <div className="details">{abode.details}</div>
-                    <div className="amenties">{abode.amenities}</div>
-                </div>
-                <div className="col s4">
-                    <input onChange={this.changeDate1} value={this.state.date2} type="date" />
-                    <input onChange={this.changeDate2} value={this.state.date2} type="date" />
+                    <div className="col s8">
+                        <div className="location">{abode.location}</div>
+                        <div className="title">{abode.title}</div>
+                        <div className="price-per-day">{abode.pricePerDay}</div>
+                        <div className="guests">{abode.guests}</div>
+                        <div className="details">{abode.details}</div>
+                        <div className="amenties">{abode.amenities}</div>
+                    </div>
+                    <div className="col s4">
+                        <input onChange={this.changeDate1} value={this.state.date1} type="date" />
+                        <input onChange={this.changeDate2} value={this.state.date2} type="date" />
+                    </div>
                 </div>
             </div>
-        </div>
         )
     }
 }
