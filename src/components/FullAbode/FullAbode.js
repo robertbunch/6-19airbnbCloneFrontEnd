@@ -3,11 +3,52 @@ import './FullAbode.css';
 import axios from 'axios';
 
 class FullAbode extends Component{
-
     state = {
         abode: {},
         date1: "",
         date2: ""
+    }
+
+    makePayment = ()=>{
+        const pKey = 'pk_test_66vdheOxNsdPHLTbdRyyB3wM'
+        const numNights = 1;
+        const amount = this.state.abode.pricePerNight * numNights;
+        var handler = window.StripeCheckout.configure({
+            key: pKey,
+            locale: 'auto',
+            image: `${window.apiHost}${this.state.abode.imageUrl}`,
+            token: (token) => {
+                console.log(token);
+                console.log(this.props.auth.token);
+                var theData = {
+                    amount: Math.floor(amount * 100),
+                    stripeToken: token.id,
+                    userToken: this.props.auth.token,
+                }
+                axios({
+                    method: 'POST',
+                    url: `${window.apiHost}/payment/stripe`,
+                    data: theData
+                }).then((response) => {
+                    console.log(response.data);
+                    if (response.data.msg === 'paymentSuccess') {
+                        this.props.history.push('/thankyou')
+                    }else if(response.data.msg === 'badToken'){
+                        this.props.history.push('/login')
+                    }else if(response.data.msg === 'paymentFailed'){
+                        this.setState({
+                            msg: `Payment was unsuccessful. Please email this to support: ${response.data.stripeError}`
+                        })
+                        console.lo(response.data.stripeError)
+                    }
+                });
+            }
+        });
+        handler.open({
+            name: "Pay Now",
+            description: 'AirBnB Payment',
+            amount: amount * 100 //the total is in pennies
+        })
     }
 
     async componentDidMount(){
@@ -44,6 +85,7 @@ class FullAbode extends Component{
                     <div className="col s4">
                         <input onChange={this.changeDate1} value={this.state.date1} type="date" />
                         <input onChange={this.changeDate2} value={this.state.date2} type="date" />
+                        <button onClick={this.makePayment} className="btn">Reserve 1 night</button>
                     </div>
                 </div>
             </div>
