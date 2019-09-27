@@ -36,7 +36,7 @@ class FullAbode extends Component{
                     <div className="col s8">
                         <div className="location">{abode.location}</div>
                         <div className="title">{abode.title}</div>
-                        <div className="price-per-day">{abode.pricePerDay}</div>
+                        <div className="price-per-day">${abode.pricePerNight} per day</div>
                         <div className="guests">{abode.guests}</div>
                         <div className="details">{abode.details}</div>
                         <div className="amenties">{abode.amenities}</div>
