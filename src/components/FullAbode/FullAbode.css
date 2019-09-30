@@ -19,6 +19,7 @@
 
 .fullAbode .right-details{
     border: 1px solid #e4e4e4;
+    padding: 15px;
 }
 
 .right-details .price-per-day{
@@ -38,6 +39,10 @@
     line-height: 1.375em;
     color: #484848;
     margin-bottom: 20px;
+}
+
+.fullAbode .divider{
+    margin: 10px 0;
 }
 
 .location-details .left-details .guests{

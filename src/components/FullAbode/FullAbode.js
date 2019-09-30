@@ -78,25 +78,41 @@ class FullAbode extends Component{
     changeDate1 = (e)=>{
         const date1 = this.state.date1;
         const date2 = this.state.date2;
+        const date1M = moment(date1);
+        const date2M = moment(date2);
+
         if(moment(e.target.value) > moment(date2)){
             this.setState({
                 datesMsg: "Check in date must be before checkout date."
             })
         }else if((date1)&&(date2)){
-            const daysDiff = date1.diff(date2, 'days');
+            const daysDiff = date1M.diff(date2, 'days');
+            console.log(daysDiff)
             this.setState({
                 date1:e.target.value,
                 daysDiff
             })
         }
-        
+        this.setState({date1:e.target.value})
     }
     changeDate2 = (e)=>{
-        if(moment(e.target.value) < moment(this.state.date1)){
+        const date1 = this.state.date1;
+        const date2 = this.state.date2;
+        const date1M = moment(date1);
+        const date2M = moment(date2);
+        if(moment(e.target.value) < moment(date1)){
             this.setState({
                 datesMsg: "Check in date must be before checkout date."
             })
+        }else if((date1)&&(date2)){
+            const daysDiff = date1M.diff(date2, 'days');
+            console.log(daysDiff)
+            this.setState({
+                date1:e.target.value,
+                daysDiff
+            })
         }
+
 
         this.setState({date2:e.target.value})
     }
